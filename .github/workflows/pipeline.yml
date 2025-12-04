@@ -8,7 +8,7 @@ on:
       runTerraformApply:
         description: "Terraform apply"
         required: true
-        default: "false"
+        default: "true"
       runTerraformDestroy:
         description: "Terraform destroy"
         required: false
