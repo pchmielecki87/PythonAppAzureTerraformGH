@@ -7,7 +7,7 @@ on:
     inputs:
       runTerraformApply:
         description: "Terraform apply"
-        required: false
+        required: true
         default: "false"
       runTerraformDestroy:
         description: "Terraform destroy"
@@ -15,7 +15,7 @@ on:
         default: "false"
       deployApp:
         description: "Deploy app"
-        required: false
+        required: true
         default: "true"
 
 env:
