@@ -8,7 +8,7 @@ terraform {
   backend "azurerm" {
     resource_group_name  = "python-terraform-ado"
     storage_account_name = "tfstateforpythonapp"
-    container_name       = "tfstate"
+    container_name       = "ghatfstate"
     key                  = "terraform.tfstate"
   }
 }
