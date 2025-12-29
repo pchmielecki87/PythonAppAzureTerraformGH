@@ -20,10 +20,11 @@ on:
 
 env:
   PYTHON_VERSION: "3.11"
-  ARTIFACT_NAME: "shopping-drop"
+  ARTIFACT_NAME: "shopping-app-artifact"
   TERRAFORM_DIR: "terraform"
-  AZURE_RG: "shopdemo-rg"
-  AZURE_APP_NAME: "shopdemo-app"
+  AZURE_RG: "shopdemo-rg-gh"
+  AZURE_APP_NAME: "shopdemo-app-gh"
+  ENV: 'dev' # needed for tfvars
 
 jobs:
 ################################################################################
@@ -84,17 +85,17 @@ jobs:
 
       - name: Terraform Plan
         working-directory: ${{ env.TERRAFORM_DIR }}
-        run: terraform plan -lock=false
+        run: terraform plan -lock=false -var-file="../environment/${{ env.ENV }}.tfvars -out=tfplan
 
       - name: Terraform Apply (conditional)
         if: ${{ github.event.inputs.runTerraformApply == 'true' }}
         working-directory: ${{ env.TERRAFORM_DIR }}
-        run: terraform apply -lock=false -auto-approve
+        run: terraform apply -lock=false -auto-approve -var-file="../environment/${{ env.ENV }}.tfvars -out=tfplan
 
       - name: Terraform Destroy (conditional)
         if: ${{ github.event.inputs.runTerraformDestroy == 'true' }}
         working-directory: ${{ env.TERRAFORM_DIR }}
-        run: terraform destroy -lock=false -auto-approve
+        run: terraform destroy -lock=false -auto-approve -var-file="../environment/${{ env.ENV }}.tfvars -out=tfplan
 
 ################################################################################
 # DEPLOY APP TO AZURE WEB APP
