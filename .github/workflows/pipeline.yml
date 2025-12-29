@@ -25,8 +25,8 @@ env:
   PYTHON_VERSION: "3.11"
   ARTIFACT_NAME: "shopping-app-artifact"
   TERRAFORM_DIR: "terraform"
-  AZURE_RG: "shopdemo-rg-gh"
-  AZURE_APP_NAME: "shopdemo-app-gh"
+  AZURE_RG: "ghashopdemo-rg"
+  AZURE_APP_NAME: "ghashopdemo-app"
   ENV: 'dev' # needed for tfvars
 
 jobs:
