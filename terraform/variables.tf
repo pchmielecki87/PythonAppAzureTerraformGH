@@ -27,12 +27,12 @@ variable "retention_in_days" {
 
 variable "storage_account_name" {
   description = "The name of the storage account"
-  default     = ""
+  default     = "demo123demo" # value declared directly
 }
 
 variable "contianer_storage_account_name" {
   description = "The name of the container in storage account"
-  default     = ""
+  default     = "demo123demo" # value declared directly
 }
 
 variable "tags" {
