@@ -7,17 +7,14 @@ on:
     inputs:
       runTerraformApply:
         description: "Terraform apply"
-        required: true
         type: boolean
         default: true
       runTerraformDestroy:
         description: "Terraform destroy"
-        required: false
         type: boolean
         default: false
       deployApp:
         description: "Deploy app"
-        required: true
         type: boolean
         default: true
 
