@@ -5,37 +5,22 @@
 # Modified on:
 # Modified by:
 
-variable "prefix" {
-  type    = string
-  default = null
-}
-
-variable "rg_name" {
-  type    = string
-  default = null
+variable "resource_group_name" {
+  type        = string
+  description = "The name of the resource group"
 }
 
 variable "location" {
-  type    = string
-  default = null
-}
-
-variable "retention_in_days" {
-  type    = string
-  default = null
+  type        = string
+  description = "The Azure region where resources will be provisioned"
 }
 
 variable "storage_account_name" {
+  type        = string
   description = "The name of the storage account"
-  default     = ""
 }
 
 variable "contianer_storage_account_name" {
+  type        = string
   description = "The name of the container in storage account"
-  default     = ""
-}
-
-variable "tags" {
-  type    = map(string)
-  default = {}
 }

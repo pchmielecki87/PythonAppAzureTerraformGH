@@ -1,3 +1,7 @@
+# TERRAFORM
+terraform/modules/terraform-rg/*
+terraform/modules/terraform-appservice/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

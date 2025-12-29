@@ -1,4 +1,11 @@
-## RG ##################################################################
+# Copyright 2025 TechBrain. All rights reserverd.
+#
+# Created on: 2025.12.01
+# Created by: Przemyslaw Chmielecki
+# Modified on:
+# Modified by:
+
+## RG #######################################################################
 resource "azurerm_resource_group" "rg" {
   name     = var.rg_name
   location = var.location
@@ -16,8 +23,8 @@ resource "azurerm_service_plan" "asp" {
 
 resource "azurerm_log_analytics_workspace" "law" {
   name                = "${var.prefix}-law"
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location  # indirect reference to azurerm_resource_group > rg > var.location
+  resource_group_name = var.rg_name                         # direct reference to var.rg_name
 
   sku               = "PerGB2018" #Free <-- not free anymore
   retention_in_days = var.retention_in_days
@@ -51,7 +58,7 @@ resource "azurerm_linux_web_app" "app" {
   depends_on = [azurerm_service_plan.asp, azurerm_application_insights.ai]
 }
 
-## AI ##################################################################
+## AI #####################################################################
 resource "azurerm_application_insights" "ai" {
   name                = "${var.prefix}-ai"
   location            = azurerm_resource_group.rg.location
@@ -64,4 +71,13 @@ resource "azurerm_application_insights" "ai" {
   daily_data_cap_notifications_disabled = true
 
   depends_on = [azurerm_log_analytics_workspace.law]
+}
+
+## SA #####################################################################
+module "sa" {
+  source                         = "./modules/terraform-storage"
+  resource_group_name            = var.rg_name
+  storage_account_name           = var.storage_account_name
+  contianer_storage_account_name = var.contianer_storage_account_name
+  location                       = var.location
 }
