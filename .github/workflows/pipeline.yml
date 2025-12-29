@@ -7,14 +7,17 @@ on:
     inputs:
       runTerraformApply:
         description: "Terraform apply"
+        required: true
         type: boolean
         default: true
       runTerraformDestroy:
         description: "Terraform destroy"
+        required: false
         type: boolean
         default: false
       deployApp:
         description: "Deploy app"
+        required: true
         type: boolean
         default: true
 
@@ -88,12 +91,30 @@ jobs:
         run: terraform plan -lock=false -var-file="./environment/${{ env.ENV }}.tfvars" -out=tfplan
 
       - name: Terraform Apply (conditional)
-        if: ${{ github.event.inputs.runTerraformApply == 'true' }}
+        # if: ${{ github.event.inputs.runTerraformApply == 'true' }}
+        if: |
+          (
+            github.event_name == 'workflow_dispatch' &&
+            fromJSON(github.event.inputs.runTerraformApply)
+          ) ||
+          (
+            github.event_name == 'push' &&
+            vars.RUN_TERRAFORM_APPLY == 'true'
+          )
         working-directory: ${{ env.TERRAFORM_DIR }}
         run: terraform apply -lock=false -auto-approve -var-file="./environment/${{ env.ENV }}.tfvars" -out=tfplan
 
       - name: Terraform Destroy (conditional)
-        if: ${{ github.event.inputs.runTerraformDestroy == 'true' }}
+        # if: ${{ github.event.inputs.runTerraformDestroy == 'true' }}
+        if: |
+          (
+            github.event_name == 'workflow_dispatch' &&
+            fromJSON(github.event.inputs.runTerraformDestroy)
+          ) ||
+          (
+            github.event_name == 'push' &&
+            vars.RUN_TERRAFORM_DESTROY == 'true'
+          )
         working-directory: ${{ env.TERRAFORM_DIR }}
         run: terraform destroy -lock=false -auto-approve -var-file="./environment/${{ env.ENV }}.tfvars" -out=tfplan
 
