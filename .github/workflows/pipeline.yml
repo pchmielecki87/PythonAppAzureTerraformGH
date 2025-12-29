@@ -24,6 +24,7 @@ on:
 env:
   PYTHON_VERSION: "3.11"
   ARTIFACT_NAME: "shopping-app-artifact"
+  ZIP_NAME: app.zip
   TERRAFORM_DIR: "terraform"
   AZURE_RG: "ghashopdemo-rg"
   AZURE_APP_NAME: "ghashopdemo-app"
@@ -52,13 +53,13 @@ jobs:
       - name: Archive app into ZIP
         run: |
           cd app
-          zip -r ../shopping-app.zip ./
+          zip -r ../${{ env.ZIP_NAME }} .
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.ARTIFACT_NAME }}
-          path: shopping-app.zip
+          path: ${{ env.ZIP_NAME }}
 
 ################################################################################
 # TERRAFORM
@@ -117,10 +118,9 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{ env.ARTIFACT_NAME }}
-          path: ./artifacts
 
       - name: Deploy ZIP to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: ${{ env.AZURE_APP_NAME }}
-          package: ./artifacts/shopping-app.zip
+          package: ${{ env.ZIP_NAME }}
