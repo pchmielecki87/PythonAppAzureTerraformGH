@@ -93,12 +93,12 @@ jobs:
       - name: Terraform Apply (conditional)
         if: ${{ github.event.inputs.runTerraformApply == 'true' }}
         working-directory: ${{ env.TERRAFORM_DIR }}
-        run: terraform apply -lock=false -auto-approve -var-file="./environment/${{ env.ENV }}.tfvars" -out=tfplan
+        run: terraform apply -lock=false -auto-approve -var-file="./environment/${{ env.ENV }}.tfvars"
 
       - name: Terraform Destroy (conditional)
         if: ${{ github.event.inputs.runTerraformDestroy == 'true' }}
         working-directory: ${{ env.TERRAFORM_DIR }}
-        run: terraform destroy -lock=false -auto-approve -var-file="./environment/${{ env.ENV }}.tfvars" -out=tfplan
+        run: terraform destroy -lock=false -auto-approve -var-file="./environment/${{ env.ENV }}.tfvars"
 
 ################################################################################
 # DEPLOY APP TO AZURE WEB APP
