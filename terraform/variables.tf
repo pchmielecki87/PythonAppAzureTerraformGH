@@ -1,22 +1,24 @@
 variable "prefix" {
   type    = string
-  default = "shopdemo-gha"
+  default = null
 }
 
 variable "rg_name" {
   type    = string
-  default = "shopdemo-gha-rg"
+  default = null
 }
 
 variable "location" {
   type    = string
-  default = "westeurope"
+  default = null
+}
+
+variable "retention_in_days" {
+  type    = string
+  default = null
 }
 
 variable "tags" {
-  type = map(string)
-  default = {
-    project     = "shopping-list-demo-gha"
-    environment = "dev"
-  }
+  type    = map(string)
+  default = {}
 }
