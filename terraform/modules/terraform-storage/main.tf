@@ -5,6 +5,17 @@
 # Modified on:
 # Modified by:
 
+# TF and Provider version - needed for TFLint
+terraform {
+  required_version = ">= 1.5" # TF version
+  required_providers {        # Azure RM provider version
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~>4.57"
+    }
+  }
+}
+
 resource "azurerm_storage_account" "sa" {
   name                     = var.storage_account_name
   resource_group_name      = var.resource_group_name

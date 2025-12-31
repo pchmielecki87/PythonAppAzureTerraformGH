@@ -23,8 +23,8 @@ resource "azurerm_service_plan" "asp" {
 
 resource "azurerm_log_analytics_workspace" "law" {
   name                = "${var.prefix}-law"
-  location            = azurerm_resource_group.rg.location  # indirect reference to azurerm_resource_group > rg > var.location
-  resource_group_name = var.rg_name                         # direct reference to var.rg_name
+  location            = azurerm_resource_group.rg.location # indirect reference to azurerm_resource_group > rg > var.location
+  resource_group_name = var.rg_name                        # direct reference to var.rg_name
 
   sku               = "PerGB2018" #Free <-- not free anymore
   retention_in_days = var.retention_in_days
@@ -47,10 +47,10 @@ resource "azurerm_linux_web_app" "app" {
     "APPLICATIONINSIGHTS_CONNECTION_STRING" = azurerm_application_insights.ai.connection_string
     "WEBSITE_RUN_FROM_PACKAGE"              = "1"
     "APPINSIGHTS_INSTRUMENTATIONKEY"        = azurerm_application_insights.ai.instrumentation_key
-    "APPLICATIONINSIGHTS_CONNECTION_STRING" = "InstrumentationKey=${azurerm_application_insights.ai.instrumentation_key}"
-    "PYTHON_VERSION"                        = "3.11"
-    "KEYVAULT_URI"                          = data.azurerm_key_vault.kv.vault_uri
-    "SCM_DO_BUILD_DURING_DEPLOYMENT"  = true
+    # "APPLICATIONINSIGHTS_CONNECTION_STRING" = "InstrumentationKey=${azurerm_application_insights.ai.instrumentation_key}"
+    "PYTHON_VERSION"                 = "3.11"
+    "KEYVAULT_URI"                   = data.azurerm_key_vault.kv.vault_uri
+    "SCM_DO_BUILD_DURING_DEPLOYMENT" = true
   }
 
   tags = var.tags

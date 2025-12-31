@@ -10,7 +10,7 @@ variable "prefix" {
   default = null
 
   validation {
-    condition     = var.rg_name != null || can(regex("^[a-z0-9-]{2,10}$", var.prefix))
+    condition     = var.prefix == null || can(regex("^[a-z0-9-]{2,10}$", var.prefix))
     error_message = "prefix must be 2–10 characters, lowercase letters, numbers or hyphens."
   }
 }
@@ -55,11 +55,13 @@ variable "retention_in_days" {
 
 variable "storage_account_name" {
   description = "The name of the storage account"
+  type        = string
   default     = "demo123demo" # value declared directly
 }
 
 variable "contianer_storage_account_name" {
   description = "The name of the container in storage account"
+  type        = string
   default     = "demo123demo" # value declared directly
 }
 

@@ -6,7 +6,8 @@
 # Modified by:
 
 terraform {
-  required_providers {
+  required_version = ">= 1.5" # TF version
+  required_providers {        # Azure RM provider version
     azurerm = {
       source  = "hashicorp/azurerm"
       version = "~>4.57"
