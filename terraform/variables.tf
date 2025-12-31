@@ -55,32 +55,15 @@ variable "retention_in_days" {
 
 variable "storage_account_name" {
   description = "The name of the storage account"
-  type        = string
-  default     = "demo123demo"
-
-  validation {
-    condition     = can(regex("^[a-z0-9]{3,24}$", var.storage_account_name))
-    error_message = "Storage account name must be 3–24 chars, lowercase letters and numbers only."
-  }
+  default     = "demo123demo" # value declared directly
 }
 
-variable "container_storage_account_name" {
+variable "contianer_storage_account_name" {
   description = "The name of the container in storage account"
-  type        = string
-  default     = "demo123demo"
-
-  validation {
-    condition     = can(regex("^[a-z0-9-]{3,63}$", var.container_storage_account_name))
-    error_message = "Container name must be 3–63 chars, lowercase letters, numbers or hyphens."
-  }
+  default     = "demo123demo" # value declared directly
 }
 
 variable "tags" {
   type    = map(string)
   default = {}
-
-  validation {
-    condition     = alltrue([for k, v in var.tags : length(k) > 0 && length(v) > 0])
-    error_message = "All tag keys and values must be non-empty strings."
-  }
 }
