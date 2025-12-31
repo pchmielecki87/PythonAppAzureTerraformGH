@@ -10,7 +10,7 @@ variable "prefix" {
   default = null
 
   validation {
-    condition     = var.rg_name != null || var.prefix != null || can(regex("^[a-z0-9-]{2,10}$", var.prefix))
+    condition     = var.rg_name != null || can(regex("^[a-z0-9-]{2,10}$", var.prefix))
     error_message = "prefix must be 2–10 characters, lowercase letters, numbers or hyphens."
   }
 }
