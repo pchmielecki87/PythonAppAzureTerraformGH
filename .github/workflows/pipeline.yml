@@ -106,13 +106,13 @@ jobs:
         working-directory: ${{ env.TERRAFORM_DIR }}
         run: terraform validate
 
-      - name: Terraform Unit Tests
-        working-directory: ${{ env.TERRAFORM_DIR }}
-        run: terraform test
-
       - name: Terraform Plan
         working-directory: ${{ env.TERRAFORM_DIR }}
         run: terraform plan -lock=false -var-file="./environment/${{ env.ENV }}.tfvars" -out=tfplan
+
+      - name: Terraform Unit Tests
+        working-directory: ${{ env.TERRAFORM_DIR }}
+        run: terraform test
 
       #########################################################################
       # TF APPLY OR DESTROY
