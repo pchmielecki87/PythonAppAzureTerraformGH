@@ -71,6 +71,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      #########################################################################
+      # TF LINTER
+      #########################################################################
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
@@ -87,6 +90,9 @@ jobs:
         run: |
           tflint --recursive
 
+      #########################################################################
+      # TF VALIDATE AND TESTS
+      #########################################################################
       - name: Azure Login
         uses: azure/login@v2
         with:
@@ -108,6 +114,9 @@ jobs:
         working-directory: ${{ env.TERRAFORM_DIR }}
         run: terraform plan -lock=false -var-file="./environment/${{ env.ENV }}.tfvars" -out=tfplan
 
+      #########################################################################
+      # TF APPLY OR DESTROY
+      #########################################################################
       - name: Terraform Apply (conditional)
         if: ${{ github.event.inputs.runTerraformApply == 'true' }}
         working-directory: ${{ env.TERRAFORM_DIR }}
