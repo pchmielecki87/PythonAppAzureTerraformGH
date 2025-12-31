@@ -2,7 +2,7 @@ run "app_service_plan_sku" {
   command = plan
 
   variables {
-    subscription_id = var.subscription_id
+    subscription_id = "63abcf25-b8df-4c76-8b31-5004c9ba37cd" #PAYG
   }
 
   assert {
@@ -15,7 +15,7 @@ run "app_service_https_only" {
   command = plan
 
   variables {
-    subscription_id = var.subscription_id
+    subscription_id = "63abcf25-b8df-4c76-8b31-5004c9ba37cd" #PAYG
   }
 
   assert {
