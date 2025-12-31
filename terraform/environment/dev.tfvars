@@ -5,6 +5,7 @@
 # Modified on:
 # Modified by:
 
+subscription_id   = "63abcf25-b8df-4c76-8b31-5004c9ba37cd" #PAYG
 prefix            = "ghashopdemo"
 rg_name           = "ghashopdemo-rg"
 location          = "westeurope"

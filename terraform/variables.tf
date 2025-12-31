@@ -5,6 +5,11 @@
 # Modified on:
 # Modified by:
 
+variable "subscription_id" {
+  type    = string
+  default = null
+}
+
 variable "prefix" {
   type    = string
   default = null
