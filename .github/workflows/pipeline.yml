@@ -74,6 +74,19 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v4
+        with:
+          tflint_version: latest
+
+      - name: Init TFLint (Azure ruleset)
+        run: |
+          tflint --init
+
+      - name: Run TFLint
+        run: |
+          tflint --recursive
+
       - name: Azure Login
         uses: azure/login@v2
         with:
