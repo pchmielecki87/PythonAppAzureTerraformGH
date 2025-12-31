@@ -1,3 +1,10 @@
+# Copyright 2025 TechBrain. All rights reserverd.
+#
+# Created on: 2025.12.01
+# Created by: Przemyslaw Chmielecki
+# Modified on:
+# Modified by:
+
 terraform {
   required_providers {
     azurerm = {
