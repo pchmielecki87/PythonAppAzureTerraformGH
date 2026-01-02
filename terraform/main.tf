@@ -6,7 +6,14 @@
 # Modified by:
 
 ## RG #######################################################################
-resource "azurerm_resource_group" "rg" {
+# resource "azurerm_resource_group" "rg" {
+#   name     = var.rg_name
+#   location = var.location
+#   tags     = var.tags
+# }
+
+module "rg" {
+  source   = "./modules/terraform-rg"
   name     = var.rg_name
   location = var.location
   tags     = var.tags
