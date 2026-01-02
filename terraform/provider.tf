@@ -2,8 +2,8 @@
 #
 # Created on: 2025.12.01
 # Created by: Przemyslaw Chmielecki
-# Modified on:
-# Modified by:
+# Modified on: 2026.01.02
+# Modified by: Przemyslaw Chmielecki
 
 terraform {
   required_version = ">= 1.5" # TF version
