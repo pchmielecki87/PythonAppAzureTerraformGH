@@ -13,8 +13,8 @@
 # }
 
 module "rg" {
-  source = "./modules/terraform-rg"
-  # name     = var.rg_name
+  source   = "./modules/terraform-rg"
+  rg_name  = var.rg_name
   location = var.location
   # tags     = var.tags
 }
@@ -85,8 +85,8 @@ resource "azurerm_application_insights" "ai" {
 
 ## SA #####################################################################
 module "sa" {
-  source = "./modules/terraform-storage"
-  # resource_group_name            = var.rg_name
+  source                         = "./modules/terraform-storage"
+  rg_name                        = var.rg_name
   storage_account_name           = var.storage_account_name
   contianer_storage_account_name = var.contianer_storage_account_name
   location                       = var.location
