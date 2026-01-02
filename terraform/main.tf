@@ -2,8 +2,12 @@
 #
 # Created on: 2025.12.01
 # Created by: Przemyslaw Chmielecki
-# Modified on:
-# Modified by:
+# Modified on: 2026.01.02
+# Modified by: Przemyslaw Chmielecki
+
+#############################################################################
+## SINGLE MAIN.TF WITH ALL RESOURCES, NO MODULES
+#############################################################################
 
 ## RG #######################################################################
 resource "azurerm_resource_group" "rg" {
@@ -12,14 +16,6 @@ resource "azurerm_resource_group" "rg" {
   tags     = var.tags
 }
 
-# TODO destroy all, then create with modules
-# module "rg" {
-#   source   = "./modules/terraform-rg"
-#   rg_name  = var.rg_name
-#   location = var.location
-#   # tags     = var.tags
-# }
-
 ## WEBAPP ##################################################################
 resource "azurerm_service_plan" "asp" {
   name                = "${var.prefix}-asp"
@@ -27,6 +23,15 @@ resource "azurerm_service_plan" "asp" {
   resource_group_name = var.rg_name # normally I could add indirect reference module.rg.name instead of var.rg_name but it WILL NOT use tfvars then
   os_type             = "Linux"
   sku_name            = "F1" # Free tier App Service Plan
+}
+
+resource "azurerm_log_analytics_workspace" "law" {
+  name                = "${var.prefix}-law"
+  location            = var.location
+  resource_group_name = var.rg_name # direct reference to var.rg_name
+
+  sku               = "PerGB2018" #Free <-- not free anymore
+  retention_in_days = var.retention_in_days
 }
 
 resource "azurerm_log_analytics_workspace" "law" {
