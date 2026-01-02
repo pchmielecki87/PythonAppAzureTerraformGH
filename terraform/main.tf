@@ -12,6 +12,7 @@ resource "azurerm_resource_group" "rg" {
   tags     = var.tags
 }
 
+# TODO destroy all, then create with modules
 # module "rg" {
 #   source   = "./modules/terraform-rg"
 #   rg_name  = var.rg_name
