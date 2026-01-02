@@ -26,8 +26,6 @@ resource "azurerm_service_plan" "asp" {
   resource_group_name = var.rg_name # normally I could add indirect reference module.rg.name instead of var.rg_name but it WILL NOT use tfvars then
   os_type             = "Linux"
   sku_name            = "F1" # Free tier App Service Plan
-
-  depends_on = [module.rg]
 }
 
 resource "azurerm_log_analytics_workspace" "law" {
