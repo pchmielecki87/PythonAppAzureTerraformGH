@@ -6,6 +6,7 @@ run "app_service_plan_sku" {
     subscription_id = "63abcf25-b8df-4c76-8b31-5004c9ba37cd" #PAYG
     rg_name         = "ghashopdemo-rg"
     location        = "westeurope"
+    prefix          = "ghashopdemo"
   }
 
   assert {
@@ -22,6 +23,7 @@ run "app_service_https_only" {
     subscription_id = "63abcf25-b8df-4c76-8b31-5004c9ba37cd" #PAYG
     rg_name         = "ghashopdemo-rg"
     location        = "westeurope"
+    prefix          = "ghashopdemo"
   }
 
   assert {
