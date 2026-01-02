@@ -34,15 +34,6 @@ resource "azurerm_log_analytics_workspace" "law" {
   retention_in_days = var.retention_in_days
 }
 
-resource "azurerm_log_analytics_workspace" "law" {
-  name                = "${var.prefix}-law"
-  location            = var.location
-  resource_group_name = var.rg_name # direct reference to var.rg_name
-
-  sku               = "PerGB2018" #Free <-- not free anymore
-  retention_in_days = var.retention_in_days
-}
-
 resource "azurerm_linux_web_app" "app" {
   name                = "${var.prefix}-app"
   location            = var.location
