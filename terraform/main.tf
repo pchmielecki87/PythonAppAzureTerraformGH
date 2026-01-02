@@ -13,7 +13,7 @@
 # }
 
 module "rg" {
-  source   = "./modules/terraform-rg"
+  source = "./modules/terraform-rg"
   # name     = var.rg_name
   location = var.location
   # tags     = var.tags
@@ -22,7 +22,7 @@ module "rg" {
 ## WEBAPP ##################################################################
 resource "azurerm_service_plan" "asp" {
   name                = "${var.prefix}-asp"
-  location            = module.rg.location
+  location            = var.location
   resource_group_name = module.rg.name
   os_type             = "Linux"
   sku_name            = "F1" # Free tier App Service Plan
@@ -31,7 +31,7 @@ resource "azurerm_service_plan" "asp" {
 resource "azurerm_log_analytics_workspace" "law" {
   name                = "${var.prefix}-law"
   location            = module.rg.location # indirect reference to azurerm_resource_group > rg > var.location
-  resource_group_name = var.rg_name                        # direct reference to var.rg_name
+  resource_group_name = var.rg_name        # direct reference to var.rg_name
 
   sku               = "PerGB2018" #Free <-- not free anymore
   retention_in_days = var.retention_in_days
@@ -39,7 +39,7 @@ resource "azurerm_log_analytics_workspace" "law" {
 
 resource "azurerm_linux_web_app" "app" {
   name                = "${var.prefix}-app"
-  location            = module.rg.location
+  location            = var.location
   resource_group_name = module.rg.name
   service_plan_id     = azurerm_service_plan.asp.id
   https_only          = true
@@ -69,7 +69,7 @@ resource "azurerm_linux_web_app" "app" {
 ## AI #####################################################################
 resource "azurerm_application_insights" "ai" {
   name                = "${var.prefix}-ai"
-  location            = module.rg.location
+  location            = var.location
   resource_group_name = module.rg.name
 
   application_type = "web"
@@ -83,7 +83,7 @@ resource "azurerm_application_insights" "ai" {
 
 ## SA #####################################################################
 module "sa" {
-  source                         = "./modules/terraform-storage"
+  source = "./modules/terraform-storage"
   # resource_group_name            = module.rg.name
   storage_account_name           = var.storage_account_name
   contianer_storage_account_name = var.contianer_storage_account_name
