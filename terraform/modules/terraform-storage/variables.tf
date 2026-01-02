@@ -5,14 +5,32 @@
 # Modified on:
 # Modified by:
 
-variable "resource_group_name" {
-  type        = string
-  description = "The name of the resource group"
+variable "rg_name" {
+  type    = string
+  default = null
+
+  validation {
+    condition     = var.rg_name == null || length(var.rg_name) <= 90
+    error_message = "rg_name must be 90 characters or fewer."
+  }
 }
 
 variable "location" {
-  type        = string
-  description = "The Azure region where resources will be provisioned"
+  type    = string
+  default = null
+
+  validation {
+    condition = var.location == null || contains([
+      "westeurope",
+      "northeurope",
+      "eastus",
+      "westus",
+      "uksouth",
+      "francecentral"
+    ], lower(var.location))
+
+    error_message = "location must be a supported Azure region (e.g. westeurope, eastus)."
+  }
 }
 
 variable "storage_account_name" {
