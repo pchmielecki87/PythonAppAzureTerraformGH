@@ -6,18 +6,18 @@
 # Modified by:
 
 ## RG #######################################################################
-# resource "azurerm_resource_group" "rg" {
-#   name     = var.rg_name
-#   location = var.location
-#   tags     = var.tags
-# }
-
-module "rg" {
-  source   = "./modules/terraform-rg"
-  rg_name  = var.rg_name
+resource "azurerm_resource_group" "rg" {
+  name     = var.rg_name
   location = var.location
-  # tags     = var.tags
+  tags     = var.tags
 }
+
+# module "rg" {
+#   source   = "./modules/terraform-rg"
+#   rg_name  = var.rg_name
+#   location = var.location
+#   # tags     = var.tags
+# }
 
 ## WEBAPP ##################################################################
 resource "azurerm_service_plan" "asp" {
