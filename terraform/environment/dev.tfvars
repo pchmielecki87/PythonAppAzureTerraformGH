@@ -2,14 +2,16 @@
 #
 # Created on: 2025.12.01
 # Created by: Przemyslaw Chmielecki
-# Modified on:
-# Modified by:
+# Modified on: 2026.01.07
+# Modified by: Przemyslaw Chmielecki
 
 subscription_id   = "63abcf25-b8df-4c76-8b31-5004c9ba37cd" #PAYG
 prefix            = "ghashopdemo"
 rg_name           = "ghashopdemo-rg"
 location          = "westeurope"
 retention_in_days = 30
+os_type           = "Linux"
+sku_name          = "F1"
 
 tags = {
   project     = "shopping-list-demo"

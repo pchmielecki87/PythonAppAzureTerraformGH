@@ -58,6 +58,7 @@ variable "retention_in_days" {
   }
 }
 
+#TODO add validation
 variable "storage_account_name" {
   description = "The name of the storage account"
   type        = string
@@ -68,6 +69,26 @@ variable "contianer_storage_account_name" {
   description = "The name of the container in storage account"
   type        = string
   default     = "demo123demo" # value declared directly
+}
+
+variable "app_service_plan_name" {
+  type        = string
+  description = "The Azure AppService Plan name"
+}
+
+variable "app_service_name" {
+  type        = string
+  description = "The Azure AppService name"
+}
+
+variable "os_type" {
+  type        = string
+  description = "The OS type name"
+}
+
+variable "sku_name" {
+  type        = string
+  description = "The SKU name"
 }
 
 variable "tags" {
