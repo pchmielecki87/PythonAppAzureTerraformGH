@@ -13,6 +13,7 @@ terraform {
       version = "~>4.57"
     }
   }
+  # External tfstate location (Azure)
   backend "azurerm" {
     resource_group_name  = "python-terraform-ado"
     storage_account_name = "tfstateforpythonapp"
@@ -21,6 +22,7 @@ terraform {
   }
 }
 
+# Config for provider
 provider "azurerm" {
   features {
     resource_group {
