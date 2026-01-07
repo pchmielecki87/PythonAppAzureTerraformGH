@@ -15,6 +15,7 @@ variables {
   prefix          = "ghashopdemo"
 }
 
+#1 Tastcase
 run "app_service_plan_sku" {
   command = plan
 
@@ -24,6 +25,7 @@ run "app_service_plan_sku" {
   }
 }
 
+#2 Tastcase
 run "app_service_https_only" {
   command = plan
 
