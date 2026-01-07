@@ -6,7 +6,7 @@
 # Modified by: Przemyslaw Chmielecki
 
 output "rg_name" {
-  value       = module.rg.rg_name
+  value       = module.asp #module.rg.rg_name
   description = "ResourceGroup name"
 }
 
