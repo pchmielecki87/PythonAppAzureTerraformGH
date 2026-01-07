@@ -6,12 +6,12 @@
 # Modified by: Przemyslaw Chmielecki
 
 output "rg_name" {
-  value       = azurerm_resource_group.rg.name
+  value       = module.rg.name
   description = "ResourceGroup name"
 }
 
 output "appservice_plan_name" {
-  value       = azurerm_service_plan.asp.name
+  value       = module.asp.name
   description = "AppService Plan name"
 }
 

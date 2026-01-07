@@ -14,7 +14,6 @@ module "rg" {
 }
 
 ## WEBAPP ##################################################################
-
 module "asp" {
   source                = "./modules/terraform-asp"
   rg_name               = var.rg_name
@@ -25,6 +24,7 @@ module "asp" {
   sku_name              = var.sku_name
   tags                  = var.tags
 }
+
 resource "azurerm_log_analytics_workspace" "law" {
   name                = "${var.prefix}-law"
   location            = var.location
@@ -38,7 +38,7 @@ resource "azurerm_linux_web_app" "app" {
   name                = "${var.prefix}-app"
   location            = var.location
   resource_group_name = var.rg_name
-  service_plan_id     = azurerm_service_plan.asp.id
+  service_plan_id     = module.asp.id
   https_only          = true
 
   site_config {
