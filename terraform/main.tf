@@ -38,7 +38,7 @@ resource "azurerm_linux_web_app" "app" {
   name                = "${var.prefix}-app"
   location            = var.location
   resource_group_name = var.rg_name
-  service_plan_id     = module.asp.id
+  service_plan_id     = module.asp.app_service_plan_id # get it from output inside ASP module
   https_only          = true
 
   site_config {
