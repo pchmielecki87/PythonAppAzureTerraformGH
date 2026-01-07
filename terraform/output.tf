@@ -6,17 +6,17 @@
 # Modified by: Przemyslaw Chmielecki
 
 output "rg_name" {
-  value       = module.asp #module.rg.rg_name
+  value       = module.rg #module.rg.rg_name
   description = "ResourceGroup name"
 }
 
 output "appservice_plan_name" {
-  value       = module.asp.app_service_plan_name
+  value       = module.asp #module.asp.app_service_plan_name
   description = "AppService Plan name"
 }
 
 output "appservice_name" {
-  value       = module.asp.app_service_name
+  value       = module.asp #module.asp.app_service_name
   description = "AppService name"
 }
 
