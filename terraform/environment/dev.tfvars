@@ -10,8 +10,10 @@ prefix            = "ghashopdemo"
 rg_name           = "ghashopdemo-rg"
 location          = "westeurope"
 retention_in_days = 30
-os_type           = "Linux"
-sku_name          = "F1"
+# app_service_plan_name "${var.prefix}-asp" <--- in variables in ASP module
+# app_service_name = "${var.prefix}-app"    <--- in variables in ASP module
+os_type  = "Linux"
+sku_name = "F1"
 
 tags = {
   project     = "shopping-list-demo"
