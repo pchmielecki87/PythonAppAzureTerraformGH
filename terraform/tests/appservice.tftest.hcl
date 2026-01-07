@@ -1,21 +1,12 @@
-# Single declaration in locals
-locals {
+run "app_service_plan_sku" {
+  command = plan
+
+  # Needed to be injected for tests needs (cannot get from variables.tf or dev.tfvars)
+  variables {
     subscription_id = "63abcf25-b8df-4c76-8b31-5004c9ba37cd" #PAYG
     rg_name         = "ghashopdemo-rg"
     location        = "westeurope"
     prefix          = "ghashopdemo"
-}
-
-#1 Tastcase
-run "app_service_plan_sku" {
-  command = plan
-
-  # just called out from main locals
-  variables {
-    subscription_id = local.subscription_id
-    rg_name         = local.rg_name
-    location        = local.location
-    prefix          = local.prefix
   }
 
   assert {
@@ -24,16 +15,15 @@ run "app_service_plan_sku" {
   }
 }
 
-#2 Tastcase
 run "app_service_https_only" {
   command = plan
   
-  # just called out from main locals
+  # Needed to be injected for tests needs (cannot get from variables.tf or dev.tfvars)
   variables {
-    subscription_id = local.subscription_id
-    rg_name         = local.rg_name
-    location        = local.location
-    prefix          = local.prefix
+    subscription_id = "63abcf25-b8df-4c76-8b31-5004c9ba37cd" #PAYG
+    rg_name         = "ghashopdemo-rg"
+    location        = "westeurope"
+    prefix          = "ghashopdemo"
   }
 
   assert {
