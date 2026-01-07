@@ -5,15 +5,15 @@
 # Modified on: 2026.01.07
 # Modified by: Przemyslaw Chmielecki
 
-subscription_id   = "63abcf25-b8df-4c76-8b31-5004c9ba37cd" #PAYG
-prefix            = "ghashopdemo"
-rg_name           = "ghashopdemo-rg"
-location          = "westeurope"
-retention_in_days = 30
+subscription_id       = "63abcf25-b8df-4c76-8b31-5004c9ba37cd" #PAYG
+prefix                = "ghashopdemo"
+rg_name               = "ghashopdemo-rg"
+location              = "westeurope"
+retention_in_days     = 30
 app_service_plan_name = "asp" #< --- in root main during calling ASP module
-app_service_name = "app"    # <--- in root main during calling ASP module
-os_type  = "Linux"
-sku_name = "F1"
+app_service_name      = "app" # <--- in root main during calling ASP module
+os_type               = "Linux"
+sku_name              = "F1"
 
 tags = {
   project     = "shopping-list-demo"

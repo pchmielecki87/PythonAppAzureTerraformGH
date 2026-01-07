@@ -5,6 +5,16 @@
 # Modified on: 2026.01.07
 # Modified by: Przemyslaw Chmielecki
 
+variable "prefix" {
+  type    = string
+  default = null
+
+  validation {
+    condition     = var.prefix == null || can(regex("^[a-z0-9-]{5,15}$", var.prefix))
+    error_message = "prefix must be 5–15 characters, lowercase letters, numbers or hyphens."
+  }
+}
+
 variable "rg_name" {
   type    = string
   default = null

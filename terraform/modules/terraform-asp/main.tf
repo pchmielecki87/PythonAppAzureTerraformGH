@@ -17,7 +17,7 @@ terraform {
 }
 
 resource "azurerm_service_plan" "app" {
-  name                = var.app_service_plan_name
+  name                = "${var.prefix}-${var.app_service_plan_name}"
   location            = var.location
   resource_group_name = var.rg_name
   os_type             = var.os_type
@@ -26,7 +26,7 @@ resource "azurerm_service_plan" "app" {
 }
 
 resource "azurerm_linux_web_app" "app" {
-  name                = var.app_service_name
+  name                = "${var.prefix}-${var.app_service_name}"
   location            = var.location
   resource_group_name = var.rg_name
   service_plan_id     = azurerm_service_plan.app.id
