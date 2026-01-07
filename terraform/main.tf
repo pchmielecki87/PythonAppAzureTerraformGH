@@ -16,10 +16,10 @@ module "rg" {
 ## WEBAPP ##################################################################
 module "asp" {
   source                = "./modules/terraform-asp"
+  app_service_plan_name = "${var.prefix}-${var.app_service_plan_name}"
   rg_name               = var.rg_name
   location              = var.location
-  app_service_plan_name = var.app_service_plan_name
-  app_service_name      = var.app_service_name
+  app_service_name      = "${var.prefix}-${var.app_service_name}"
   os_type               = var.os_type
   sku_name              = var.sku_name
   tags                  = var.tags
@@ -35,7 +35,7 @@ resource "azurerm_log_analytics_workspace" "law" {
 }
 
 resource "azurerm_linux_web_app" "app" {
-  name                = "${var.prefix}-app"
+  name                = "${var.prefix}-${var.app_service_name}"
   location            = var.location
   resource_group_name = var.rg_name
   service_plan_id     = module.asp.app_service_plan_id # get it from output inside ASP module

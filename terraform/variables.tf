@@ -73,7 +73,6 @@ variable "contianer_storage_account_name" {
 variable "app_service_plan_name" {
   type        = string
   description = "The Azure App Service Plan name"
-  default     = "${var.prefix}-asp"
 
   validation {
     condition     = length(var.app_service_plan_name) >= 1 && length(var.app_service_plan_name) <= 40
@@ -84,7 +83,6 @@ variable "app_service_plan_name" {
 variable "app_service_name" {
   type        = string
   description = "The Azure App Service name"
-  default     = "${var.prefix}-app"
 
   validation {
     condition = (

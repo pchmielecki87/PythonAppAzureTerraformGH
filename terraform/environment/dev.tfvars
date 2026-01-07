@@ -10,8 +10,8 @@ prefix            = "ghashopdemo"
 rg_name           = "ghashopdemo-rg"
 location          = "westeurope"
 retention_in_days = 30
-# app_service_plan_name "${var.prefix}-asp" <--- in variables in ASP module
-# app_service_name = "${var.prefix}-app"    <--- in variables in ASP module
+app_service_plan_name = "asp" #< --- in root main during calling ASP module
+app_service_name = "app"    # <--- in root main during calling ASP module
 os_type  = "Linux"
 sku_name = "F1"
 
