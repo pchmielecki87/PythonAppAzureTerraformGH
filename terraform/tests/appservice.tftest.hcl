@@ -1,11 +1,19 @@
-  # WORKS!
-  # primal declaration
-  variables {
-    subscription_id = "63abcf25-b8df-4c76-8b31-5004c9ba37cd" #PAYG
-    rg_name         = "ghashopdemo-rg"
-    location        = "westeurope"
-    prefix          = "ghashopdemo"
-  }
+# Copyright 2025 TechBrain. All rights reserverd.
+#
+# Created on: 2025.12.01
+# Created by: Przemyslaw Chmielecki
+# Modified on: 2026.01.07
+# Modified by: Przemyslaw Chmielecki
+  
+# WORKS!
+
+# primal declaration
+variables {
+  subscription_id = "63abcf25-b8df-4c76-8b31-5004c9ba37cd" #PAYG
+  rg_name         = "ghashopdemo-rg"
+  location        = "westeurope"
+  prefix          = "ghashopdemo"
+}
 
 run "app_service_plan_sku" {
   command = plan
