@@ -42,3 +42,8 @@ variable "contianer_storage_account_name" {
   type        = string
   description = "The name of the container in storage account"
 }
+
+variable "tags" {
+  type    = map(string)
+  default = {}
+}
