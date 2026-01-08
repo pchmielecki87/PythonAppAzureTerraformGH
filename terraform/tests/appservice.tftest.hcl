@@ -13,6 +13,10 @@ variables {
   rg_name         = "ghashopdemo-rg"
   location        = "westeurope"
   prefix          = "ghashopdemo"
+  app_service_plan_name = "asp"
+  app_service_name      = "app"
+  os_type               = "Linux"
+  sku_name              = "F1"
 }
 
 #1 Tastcase
