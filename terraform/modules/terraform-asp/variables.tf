@@ -6,7 +6,7 @@
 # Modified by: Przemyslaw Chmielecki
 
 variable "prefix" {
-  type    = string
+  type = string
 
   validation {
     condition     = var.prefix == null || can(regex("^[a-z0-9-]{5,15}$", var.prefix))

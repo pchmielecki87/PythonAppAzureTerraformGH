@@ -2,8 +2,8 @@
 #
 # Created on: 2025.12.01
 # Created by: Przemyslaw Chmielecki
-# Modified on:
-# Modified by:
+# Modified on: 2026.01.08
+# Modified by: Przemyslaw Chmielecki
 
 ## RG #######################################################################
 module "rg" {
@@ -16,6 +16,7 @@ module "rg" {
 ## WEBAPP ##################################################################
 module "asp" {
   source                = "./modules/terraform-asp"
+  prefix                = var.prefix
   app_service_plan_name = "${var.prefix}-${var.app_service_plan_name}"
   rg_name               = var.rg_name
   location              = var.location
