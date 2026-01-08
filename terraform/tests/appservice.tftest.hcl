@@ -24,7 +24,7 @@ run "app_service_plan_sku" {
   command = plan
 
   assert {
-    condition     =  module.asp.sku_name == "F1" # azurerm_service_plan.asp.sku_name == "F1" 
+    condition     =  module.asp.app_service_plan_sku_name == "F1" # used directly, not by module ---> azurerm_service_plan.asp.sku_name == "F1" 
     error_message = "App Service Plan must use F1"
   }
 }
