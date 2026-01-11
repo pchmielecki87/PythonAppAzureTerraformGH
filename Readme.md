@@ -19,6 +19,10 @@
 └── terraform/
     └── terraform/
     │  └── dev.tfvars         # Variables values for dev environment
+    └── modules/
+    │  ├── main.tf            # Main for modules
+    │  └── variables.tf       # Variables values for modules
+    │
     ├── main.tf               # Core resources (App Service, Plan, App Insights)
     ├── outputs.tf            # Useful Terraform outputs
     ├── variables.tf          # Variables declarations for prefix, location, misc
