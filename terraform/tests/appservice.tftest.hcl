@@ -19,7 +19,7 @@ variables {
   sku_name              = "F1"
 }
 
-#1 Tastcase
+#1 Testcase
 run "app_service_plan_sku" {
   command = plan
 
@@ -29,7 +29,7 @@ run "app_service_plan_sku" {
   }
 }
 
-#2 Tastcase
+#2 Testcase
 run "app_service_https_only" {
   command = plan
 
