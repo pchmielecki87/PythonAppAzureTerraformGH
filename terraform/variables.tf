@@ -60,13 +60,13 @@ variable "retention_in_days" {
 variable "storage_account_name" {
   description = "The name of the storage account"
   type        = string
-  default     = "demo123demo" # value declared directly
+  default     = "demo123sages" # value declared directly
 }
 
 variable "contianer_storage_account_name" {
   description = "The name of the container in storage account"
   type        = string
-  default     = "demo123demo" # value declared directly
+  default     = "demo123sages" # value declared directly
 }
 
 # variable "app_service_plan_name" {
