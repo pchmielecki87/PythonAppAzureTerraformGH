@@ -17,6 +17,8 @@ run "app_service_plan_sku" {
     rg_name         = "ghashopdemo-rg"
     location        = "westeurope"
     prefix          = "ghashopdemo"
+    os_type         = "Linux"
+    sku_name        = "F1"
   }
 
   assert {
@@ -35,6 +37,8 @@ run "app_service_https_only" {
     rg_name         = "ghashopdemo-rg"
     location        = "westeurope"
     prefix          = "ghashopdemo"
+    os_type         = "Linux"
+    sku_name        = "F1"
   }
 
   assert {
