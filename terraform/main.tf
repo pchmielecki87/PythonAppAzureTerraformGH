@@ -6,7 +6,7 @@
 # Modified by: Przemyslaw Chmielecki
 
 #############################################################################
-## SINGLE MAIN.TF WITH ALL RESOURCES, NO MODULES
+## SINGLE MAIN.TF WITH ALL RESOURCES, SOME MODULES
 #############################################################################
 
 ## RG #######################################################################
@@ -16,11 +16,6 @@ module "rg" {
   location = var.location
   tags     = var.tags
 }
-# resource "azurerm_resource_group" "rg" {
-#   name     = var.rg_name
-#   location = var.location
-#   tags     = var.tags
-# }
 
 ## WEBAPP ##################################################################
 resource "azurerm_service_plan" "asp" {
@@ -92,4 +87,12 @@ module "sa" {
   storage_account_name           = var.storage_account_name
   contianer_storage_account_name = var.contianer_storage_account_name
   location                       = var.location
+}
+
+## SANDBOX ###############################################################
+resource "azurerm_resource_group" "rg" {
+  count = var.dummy_rg == "" ? "dummy_rg_pusta" : "dummy_rg_niepusta"
+  name     = var.dummy_rg
+  location = var.location
+  tags     = var.tags
 }

@@ -123,3 +123,8 @@ variable "tags" {
   type    = map(string)
   default = {}
 }
+
+variable "dummy_rg" {
+  type    = string
+  default = ""
+}
