@@ -25,14 +25,14 @@ resource "azurerm_service_plan" "app" {
   tags                = var.tags
 }
 
-resource "azurerm_linux_web_app" "app" {
-  name                = "${var.prefix}-${var.app_service_name}"
-  location            = var.location
-  resource_group_name = var.rg_name
-  service_plan_id     = azurerm_service_plan.app.id
-  tags                = var.tags
+# resource "azurerm_linux_web_app" "app" {
+#   name                = "${var.prefix}-${var.app_service_name}"
+#   location            = var.location
+#   resource_group_name = var.rg_name
+#   service_plan_id     = azurerm_service_plan.app.id
+#   tags                = var.tags
 
-  site_config {
-    always_on = false
-  }
-}
+#   site_config {
+#     always_on = false
+#   }
+# }
