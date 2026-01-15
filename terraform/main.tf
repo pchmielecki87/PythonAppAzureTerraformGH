@@ -2,27 +2,29 @@
 #
 # Created on: 2025.12.01
 # Created by: Przemyslaw Chmielecki
-# Modified on: 2026.01.02
+# Modified on: 2026.01.08
 # Modified by: Przemyslaw Chmielecki
 
-#############################################################################
-## SINGLE MAIN.TF WITH ALL RESOURCES, NO MODULES
-#############################################################################
-
 ## RG #######################################################################
-resource "azurerm_resource_group" "rg" {
-  name     = var.rg_name
+module "rg" {
+  source   = "./modules/terraform-rg"
+  rg_name  = var.rg_name
   location = var.location
   tags     = var.tags
 }
 
 ## WEBAPP ##################################################################
-resource "azurerm_service_plan" "asp" {
-  name                = "${var.prefix}-asp"
-  location            = var.location
-  resource_group_name = var.rg_name # normally I could add indirect reference module.rg.name instead of var.rg_name but it WILL NOT use tfvars then
-  os_type             = "Linux"
-  sku_name            = "F1" # Free tier App Service Plan
+module "asp" {
+  source                = "./modules/terraform-asp"
+  prefix                = var.prefix
+  app_service_plan_name = "${var.prefix}-${var.app_service_plan_name}"
+  rg_name               = var.rg_name
+  location              = var.location
+  app_service_name      = "${var.prefix}-${var.app_service_name}"
+  os_type               = var.os_type
+  sku_name              = var.sku_name
+  tags                  = var.tags
+  depends_on = [ module.rg ]
 }
 
 resource "azurerm_log_analytics_workspace" "law" {
@@ -35,10 +37,10 @@ resource "azurerm_log_analytics_workspace" "law" {
 }
 
 resource "azurerm_linux_web_app" "app" {
-  name                = "${var.prefix}-app"
+  name                = "${var.prefix}-${var.app_service_name}"
   location            = var.location
   resource_group_name = var.rg_name
-  service_plan_id     = azurerm_service_plan.asp.id
+  service_plan_id     = module.asp.app_service_plan_id # get it from output inside ASP module
   https_only          = true
 
   site_config {
@@ -60,7 +62,7 @@ resource "azurerm_linux_web_app" "app" {
 
   tags = var.tags
 
-  depends_on = [azurerm_service_plan.asp, azurerm_application_insights.ai]
+  depends_on = [module.asp, azurerm_application_insights.ai]
 }
 
 ## AI #####################################################################
