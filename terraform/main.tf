@@ -91,7 +91,7 @@ module "sa" {
 
 ## SANDBOX ###############################################################
 resource "azurerm_resource_group" "rg" {
-  name     = var.dummy_rg == "" ? "dummy_rg_pusta" : "dummy_rg_niepusta"
+  name     = var.dummy_rg == null ? "dummy_rg_pusta" : "dummy_rg_niepusta"
   location = var.location
   tags     = var.tags
 }
