@@ -1,6 +1,10 @@
 # Created by https://gitignore.org
 # Terraform.gitignore
 
+# Exlude not ready modules
+modules/terraform-appservice
+modules/terraform-asp
+
 # Local .terraform directories
 .terraform/
 
