@@ -24,7 +24,7 @@ module "asp" {
   os_type               = var.os_type
   sku_name              = var.sku_name
   tags                  = var.tags
-  depends_on = [ module.rg ]
+  depends_on            = [module.rg]
 }
 
 resource "azurerm_log_analytics_workspace" "law" {
