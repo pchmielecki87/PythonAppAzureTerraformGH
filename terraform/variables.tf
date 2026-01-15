@@ -126,5 +126,5 @@ variable "tags" {
 
 variable "dummy_rg" {
   type    = string
-  default = ""
+  default = null
 }
