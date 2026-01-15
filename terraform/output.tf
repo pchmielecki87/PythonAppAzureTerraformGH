@@ -11,12 +11,12 @@ output "rg_name" {
 }
 
 output "appservice_plan_name" {
-  value       = module.asp #module.asp.app_service_plan_name
+  value       = azurerm_service_plan.asp.name #module.asp
   description = "AppService Plan name"
 }
 
 output "appservice_name" {
-  value       = module.asp #module.asp.app_service_name
+  value       = azurerm_linux_web_app.app.name #module.asp
   description = "AppService name"
 }
 
